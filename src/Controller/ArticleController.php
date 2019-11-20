@@ -5,7 +5,7 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
-class ArticleController
+class ArticleController extends AbstractController
 {
     /**
      * @Route("/")
@@ -18,8 +18,10 @@ class ArticleController
     /**
      * @Route("/news/why-asteroids-taste-like-bacon")
      */
-    public function show()
+    public function show($slug)
     {
-        return new Response('Future page to show one space article!');
+        return $this->render('article/show.html.twig', [
+            'title' => ucwords(str_replace('-', ' ', $slug)),
+        ]);
     }
 }
